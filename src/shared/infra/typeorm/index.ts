@@ -1,5 +1,7 @@
-import { createConnection, getConnectionOptions } from "typeorm";
+// import { container } from "tsyringe";
+import { Connection, createConnection, getConnectionOptions } from "typeorm";
 
+/*
 interface IOptions {
     host: string;
 }
@@ -10,4 +12,13 @@ getConnectionOptions().then((options) => {
     createConnection({
         ...options,
     });
-});
+}); */
+
+export default async (host = "database_ignite"): Promise<Connection> => {
+    const defaultOptions = await getConnectionOptions();
+    return createConnection(
+        Object.assign(defaultOptions, {
+            host,
+        })
+    );
+};
