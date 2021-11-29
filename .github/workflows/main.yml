@@ -43,6 +43,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ~/app/estudos-typescript-nodejs
+            yarn
+            ./node_modules/.bin/typeorm migration:run
+            
           
             
 
